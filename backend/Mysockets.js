@@ -1,9 +1,10 @@
 module.exports = (function(){
-	var Set = require('./../core/Set');
-	var EventEnabledBuilder= require('./../core/EventEnabledBuilder');
+	var Core = require('core');
+	var Set = Core.Set;
+	var EventEnabledBuilder= Core.EventEnabledBuilder;
 	var MysocketCleanup=require('./MysocketCleanup');
 	var Mysocket = require('./Mysocket');
-	var ChannelType = require('./../core/ChannelType');
+	var ChannelType = Core.ChannelType;
 	var uuid = require('uuid');
 	return function(handler){
 		EventEnabledBuilder(this);

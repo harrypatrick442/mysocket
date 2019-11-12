@@ -1,9 +1,10 @@
 module.exports = (function(){
 	var _MysocketCleanup = function(mysockets){
 		const DELAY_CLEANUP_MINUTES = 1;
-		var Set = require('./../core/Set');
-		var Timer = require('./../core/Timer');
-		var each = require('./../core/each');
+		var Core = require('core');
+		var Set = Core.Set;
+		var Timer = Core.Timer;
+		var each = Core.each;
 		var set = new Set({getEntryId:getEntryId});
 		var timerCleanup = new Timer({delay:DELAY_CLEANUP_MINUTES*60000, callback:cleanupRoutine});
 		mysockets.addEventListener('add', onAdd);

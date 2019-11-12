@@ -1,3 +1,4 @@
+const Helpers = require('helpers');
 module.exports={
 	Mysocket:require('./backend/Mysocket'),
 	MysocketChannelFactory:require('./backend/MysocketChannelFactory'),
@@ -5,4 +6,6 @@ module.exports={
 	MysocketEndpointLongpoll:require('./backend/MysocketEndpointLongpoll'),
 	MysocketEndpointWebsocket:require('./backend/MysocketEndpointWebsocket'),
 	Mysockets:require('./backend/Mysockets'),
+	getScriptsRelativePath:Helpers.getGetScriptsRelativePath(),
+	getScriptsAbsolutePath:Helpers.getGetScriptsAbsolutePath()
 };

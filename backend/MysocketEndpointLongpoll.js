@@ -1,7 +1,8 @@
 module.exports=(function(path){
 	var url = require('url');
-	var Longpolls = require("./../core/Longpolls");
-	var Longpoll = require("./../core/Longpoll");
+	var Core = require('core');
+	var Longpolls = Core.Longpolls;
+	var Longpoll = Core.Longpoll;
 	return function(mysockets, app, path){
 		var longpolls = new Longpolls();
 		app.post(path, function(req, res, next){

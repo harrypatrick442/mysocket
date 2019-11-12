@@ -1,8 +1,9 @@
 module.exports = (function(){
 	const TIMEOUT_CLOSED_CHANNEL_MINUTES = 2;
-	var ChannelType = require('./../core/ChannelType');
+	var Core = require('core');
+	var ChannelType = Core.ChannelType;
 	var channelFactory = require('./MysocketChannelFactory');
-	var EventEnabledBuilder=require('./../core/EventEnabledBuilder');
+	var EventEnabledBuilder=Core.EventEnabledBuilder;
 	var dispatchedChannelOpen = false;
 	var _Mysocket = function(params){
 		EventEnabledBuilder(this);

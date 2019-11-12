@@ -1,7 +1,8 @@
 module.exports = new (function(){
 	var TIMEOUT_CHANNEL_LONGPOLL= 120000;
+	var Core = require('core');
 	var Mysocket = require('./Mysocket');
-	var ChannelType = require('./../core/ChannelType');
+	var ChannelType = Core.ChannelType;
 	this.create = function(params){
 		var id = params.id;
 		if(params.ws)
