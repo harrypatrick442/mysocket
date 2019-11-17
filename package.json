@@ -1,19 +1,25 @@
 {
-  "name": "mysocket",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/harrypatrick442/mysocket.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/harrypatrick442/mysocket/issues"
-  },
-  "homepage": "https://github.com/harrypatrick442/mysocket#readme"
+	"name": "mysocket",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"dependencies": {
+		"core": "^1.0.0",
+		"helpers": "^1.0.0",
+		"repositories_helper": "^1.0.0"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/harrypatrick442/mysocket.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/harrypatrick442/mysocket/issues"
+	},
+	"homepage": "https://github.com/harrypatrick442/mysocket#readme"
 }
