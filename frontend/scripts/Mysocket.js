@@ -1,6 +1,10 @@
 var Mysocket = (function(){
 	var MYSOCKET_ID = 'mysocket_id';
 	var _Mysocket= function(global, params){
+		global.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+    alert("Error occured: " + errorMsg);//or any message
+    return false;
+		};
 		global['EventEnabledBuilder'](this);
 		var self = this;
 		var dispatchedChannelOpen = false;
@@ -27,6 +31,7 @@ var Mysocket = (function(){
 			resetting=false;
 			var channel = getChannel();
 			if(channel&&channel['isOpen']()){
+			console.log('mysocet send');  
 				channel['send'](msg);
 				return;
 			}
@@ -47,6 +52,7 @@ var Mysocket = (function(){
 			dispatchClose();
 		}
 		function dispatchMessage(msg){
+			console.log('mysocket dispatch msg');
 			self['dispatchEvent']({'type':'message', 'msg':msg});
 		}
 		function dispatchOpen(){
