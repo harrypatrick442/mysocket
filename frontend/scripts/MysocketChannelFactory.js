@@ -13,11 +13,14 @@ var MysocketChannelFactory = new (function(){
 		}
 	};
 	function _Websocket(global, id, url, parameters){
+		console.log(url);
+		console.log(parameters);	
 		var self = this;
 		var analysis = new (global['MysocketChannelAnalysis'])(global, ChannelType['WEBSOCKET']);
 		var websocket;
 		var disposedByServer = false;
 		this['send'] = function(msg){
+			console.log('ws send');console.log(msg);
 			try{
 			websocket.send(JSON.stringify(msg));
 			}
@@ -60,6 +63,7 @@ var MysocketChannelFactory = new (function(){
 		};
 		global['channel'] = this;
 		function onMessage(e){
+			console.log('MESSAGE');
 			var data = e['data'];
 			if(data===undefined||data===null||data==='')return;
 			var msg = global.JSON.parse(data);	
