@@ -4,6 +4,8 @@ module.exports = (function(){
 	const ChannelType = Core.ChannelType;
 	const url = require('url');
 	return function(mysockets, app, server, path){
+	console.log('INITIALIZING WEBSOCKET IWTH PATH');
+	console.log(path);
 		var expressWs = getExpressWs(app, server);
 		app.get(path, function(req, res, next){
 			console.log('GET GET GET');
