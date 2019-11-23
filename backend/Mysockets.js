@@ -48,6 +48,9 @@ module.exports = (function(){
 			return mysocket;
 		};
 		this.getNewId=getNewId;
+		this.getNConnections= function(){
+			return set.size;
+		};
 		function dispatchAdd(mysocket, parameters){
 			self.dispatchEvent({type:'add', mysocket:mysocket, parameters:parameters});
 		}
