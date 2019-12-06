@@ -47,6 +47,7 @@ var Mysocket = (function(){
 			dispatchClose();
 		}
 		function dispatchMessage(msg){
+			console.log(msg);
 			self['dispatchEvent']({'type':'message', 'msg':msg});
 		}
 		function dispatchOpen(){
