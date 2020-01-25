@@ -3,8 +3,10 @@ module.exports = (function(){
 	const Core = require('core');
 	const ChannelType = Core.ChannelType;
 	const url = require('url');
-	return function(mysockets, app, server, path){
-		var expressWs = getExpressWs(app, server);
+	return function(mysockets, server, path){
+		console.log(server);
+		var app = server.getApp();
+		var expressWs = getExpressWs(app, server.getServer());
 		app.get(path, function(req, res, next){
 		  res.end();
 		});

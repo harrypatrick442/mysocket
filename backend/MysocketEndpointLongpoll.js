@@ -3,8 +3,9 @@ module.exports=(function(path){
 	var Core = require('core');
 	var Longpolls = Core.Longpolls;
 	var Longpoll = Core.Longpoll;
-	return function(mysockets, app, path){
+	return function(mysockets, server, path){
 		var longpolls = new Longpolls();
+		const app = server.getApp();
 		app.post(path, function(req, res, next){
 			var data = JSON.parse(req.body);
 			var mysocketId = data.id;
