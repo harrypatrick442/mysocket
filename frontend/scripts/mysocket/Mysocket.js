@@ -5,8 +5,10 @@ var Mysocket = (function(){
 		var self = this;
 		var dispatchedChannelOpen = false;
 		var url = params['url'];
+		if(url.indexOf('http')<0)throw new Error('Not a valid url');
 		var parameters = params['parameters'];
 		var urlWebsocket = params['urlWebsocket'];
+		if(urlWebsocket.indexOf('http')<0)throw new Error('Not a valid websocket url');
 		var channel;
 		var id;
 		var toSend=[];
@@ -15,7 +17,7 @@ var Mysocket = (function(){
 			resetting=true;
 			id=null;
 			toSend=[];
-			channel&&channel['dispose']();
+			channel&&channel['close']();
 			channel=null;
 			dispatchChannelClose();
 			mysocketAnalysis['clear']();
@@ -58,8 +60,7 @@ var Mysocket = (function(){
 		function getChannel(){
 			if(channel)return channel;
 			channel = channelManager['wouldLikeNewChannel']();
-			if(!channel)return;
-			prepareChannel(channel);
+			return channel;
 		}
 		function getId(){
 			return id;

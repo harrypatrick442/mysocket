@@ -17,6 +17,7 @@ var MysocketChannelFactory = new (function(){
 		var analysis = new (global['MysocketChannelAnalysis'])(global, ChannelType['WEBSOCKET']);
 		var websocket;
 		var disposedByServer = false;
+		var closed = false;
 		this['send'] = function(msg){
 			try{
 			websocket.send(JSON.stringify(msg));
@@ -40,21 +41,23 @@ var MysocketChannelFactory = new (function(){
 		this['isOpen'] = function(){
 			return websocket&&(websocket['readyState']==websocket['OPEN']);
 		};
+		this['close']=close;
 		//new Task(function(){onClose('test');}).run();
 		//return;
 		websocket = new WebSocket(UrlHelper/*test*/['addParameters'](url+(id?'?mysocketId='+id:''), parameters));
 		websocket['onmessage'] = onMessage;
 		websocket['onopen'] = onOpen;
 		websocket['onclose']=onClose;
-		websocket['onerror'] = onError
-		this['close'] = function(){
-			
+		websocket['onerror'] = onError;
+		function close(){
+			if(closed)return;
 			try{
 			websocket['close']();
 			}catch(ex){
-				console.error(ex);}//patching up bug.
-				onClose();
-			};
+				console.error(ex);
+			}//patching up bug.
+			onClose();
+		};
 		this['getDisposedByServer'] = function(){
 			return disposedByServer;
 		};
@@ -75,15 +78,15 @@ var MysocketChannelFactory = new (function(){
 			self['onMessage']&&self['onMessage'](msg);
 		}
 		function onOpen(){
+			if(closed)return;
 			analysis['opened']();
 			self['onOpen']&&self['onOpen']();
 		}
-		var didOnClose=false;
 		function onClose(){
-			if(didOnClose)return;
-			didOnClose=true;
+			if(closed)return;
+			closed=true;
 			analysis['closed']();
-			self['onClose']&&self['onClose']();
+			self['onClose']&&self['onClose'](self);
 		}
 		function onError(err){
 			analysis['error'](err);
@@ -99,7 +102,7 @@ var MysocketChannelFactory = new (function(){
 		longpoll['onMessage']= onMessage;
 		longpoll['onError'] = onError;
 		longpoll['onSent'] = nothing;//onOpen
-		longpoll['onDispose'] = onDispose;
+		longpoll['onDispose'] = close;
 		
 		global['channel'] = this;
 		this['close']= close;
@@ -117,10 +120,8 @@ var MysocketChannelFactory = new (function(){
 			analysis['receivedMessage']();
 			self['onMessage']&&self['onMessage'](msg);
 		}
-		function onDispose(){
-			close();
-		}
 		function onOpen(parameters){
+			if(closed)return;
 			analysis['opened']();
 			if(parameters)
 				self['send'](parameters);

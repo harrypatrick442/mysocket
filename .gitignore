@@ -3,3 +3,5 @@ node_modules/core
 node_modules/helpers
 backend/node_modules
 node_modules
+node_modules/enums
+node_modules/strings

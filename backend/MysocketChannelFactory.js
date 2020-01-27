@@ -19,7 +19,7 @@ module.exports = new (function(){
 			return ChannelType.WEBSOCKET;
 		};
 		this.sendMessage=function(msg){
-			try{ws.send(JSON.stringify(msg));}catch(ex){console.log(ex);}
+			try{ws.send(JSON.stringify(msg));}catch(ex){console.error(ex);}
 		};
 		ws.on('message', function(msg) {
 			self.onMessage&&self.onMessage(JSON.parse(msg));

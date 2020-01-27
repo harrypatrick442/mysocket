@@ -4,7 +4,6 @@ module.exports = (function(){
 	const ChannelType = Core.ChannelType;
 	const url = require('url');
 	return function(mysockets, server, path){
-		console.log(server);
 		var app = server.getApp();
 		var expressWs = getExpressWs(app, server.getServer());
 		app.get(path, function(req, res, next){
@@ -24,7 +23,7 @@ module.exports = (function(){
 					return;
 				}
 				//if(ip)	mysocket.setIp(ip);
-			}catch(ex){console.log(ex);}
+			}catch(ex){console.error(ex);}
 		});
 	};
 	function getExpressWs(app, server){

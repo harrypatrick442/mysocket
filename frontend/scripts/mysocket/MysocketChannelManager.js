@@ -14,6 +14,7 @@ var MysocketChannelManager = (function(){
 		var channel;
 		var pendingCreate=false;
 		var When = global['When'];
+		var timerCreateChannelAfterDelay;
 		this['wouldLikeNewChannel'] = function(){
 			if(pendingCreate)return;
 			var recommendedDelay = mysocketAnalysis['getRecommendedDelayBeforeCreatingChannel']();	
@@ -28,19 +29,18 @@ var MysocketChannelManager = (function(){
 		};
 		function createNewChannelAfterDelayMilliseconds(milliseconds){
 			pendingCreate = true;
-			new (global['Timer'])({'delay':milliseconds, 'callback':callbackCreateChannel, 'nTicks':1})['start']();
+			timerCreateChannelAfterDelay = new (global['Timer'])({'delay':milliseconds, 'callback':callbackCreateChannel, 'nTicks':1})['start']();
 		}
 		function callbackCreateChannel(){
-			disposeOldChannel();
 			createNewChannel();
-			dispatchNewChannel();
-			pendingCreate=false;
-		}
-		function disposeOldChannel(){
-			
 		}
 		function createNewChannel(){
+			channel&&channel['close']();
+			pendingCreate=false;
+			timerCreateChannelAfterDelay&&timerCreateChannelAfterDelay.stop();
+			timerCreateChannelAfterDelay=null;
 			channel = global['MysocketChannelFactory']['create'](global, {'id':getId(), 'urlWebsocket':urlWebsocket, 'url':url, 'mysocketAnalysis':mysocketAnalysis, 'parameters':parameters});
+			dispatchNewChannel();
 			return channel;
 		}
 		function dispatchNewChannel(){

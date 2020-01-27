@@ -18,7 +18,7 @@ var MysocketAnalysis = (function(){
 			var nRecentWebsocketsFailedQuickly = getNRecentWebsocketsFailedQuickly();
 			var supportsWebsocket=global['WebSocket']?true:false;
 			var websocketFailedQuickly;
-			var shouldUseWebsocket=supportsWebsocket&&!(websocketFailedQuickly= nRecentWebsocketsFailedQuickly>0);
+			var shouldUseWebsocket=supportsWebsocket&&((websocketFailedQuickly= nRecentWebsocketsFailedQuickly)<=0);
 			if(shouldUseWebsocket&&websocketFailedQuickly)
 			{
 				var shouldAttemptWebsocketAgain = new Date().getTime()-websocketFailedQuickly['getOpenedAt']()
@@ -53,7 +53,6 @@ var MysocketAnalysis = (function(){
 			return getRecentWebsockets()['where'](function(x){ return x['getOpenForMilliseconds']()<FAILED_QUICKLY_DELAY_MILLISECONDS;})['count']();
 		}
 		function getRecentWebsockets(){
-			
 			return getRecentChannels()['where'](function(x){ return x['getChannelType']()==ChannelType['WEBSOCKET'];});
 		}
 		function getRecentChannels(){
