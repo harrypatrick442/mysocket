@@ -1,5 +1,4 @@
 module.exports = (function(){
-	const ExpressWs = require('express-ws');
 	const Core = require('core');
 	const ChannelType = Core.ChannelType;
 	const url = require('url');
