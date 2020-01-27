@@ -16,6 +16,8 @@ module.exports = (function(){
 			var ws = params.ws;
 			var ip = params.ip;
 			var parameters = params.parameters;
+			console.log(parameters);
+			console.log('was paras');
 			var mysocket;
 			if(id)
 			{
