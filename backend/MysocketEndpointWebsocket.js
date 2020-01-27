@@ -11,8 +11,9 @@ module.exports = (function(){
 		});
 		app.ws(path, function(ws, req) {
 			try{
-				var parameters = url.parse(req.url, true).query;
-				var mysocketId = parameters.mysocketId;
+				var params = url.parse(req.url, true).query;
+				var parameters = JSON.parse(decodeURIComponent(params.parameters));
+				var mysocketId = params.mysocketId;
 				var ip = getIpFromRemoteAddress(req.connection.remoteAddress);
 				var params = {id:mysocketId, ws:ws, ip:ip, parameters:parameters};
 				var mysocket = mysockets.getOrCreateWebsocket(params);

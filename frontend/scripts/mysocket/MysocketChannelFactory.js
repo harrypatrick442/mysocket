@@ -44,7 +44,10 @@ var MysocketChannelFactory = new (function(){
 		this['close']=close;
 		//new Task(function(){onClose('test');}).run();
 		//return;
-		websocket = new WebSocket(UrlHelper/*test*/['addParameters'](url+(id?'?mysocketId='+id:''), parameters));
+		console.log(UrlHelper/*test*/['addParameters'](url+(id?'?mysocketId='+id:''), 
+		{parameters:encodeURIComponent(JSON.stringify(parameters))}));
+		websocket = new WebSocket(UrlHelper/*test*/['addParameters'](url+(id?'?mysocketId='+id:''),
+		{parameters:encodeURIComponent(JSON.stringify(parameters))}));
 		websocket['onmessage'] = onMessage;
 		websocket['onopen'] = onOpen;
 		websocket['onclose']=onClose;
