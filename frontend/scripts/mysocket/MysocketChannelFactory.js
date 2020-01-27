@@ -64,7 +64,6 @@ var MysocketChannelFactory = new (function(){
 		};
 		global['channel'] = this;
 		function onMessage(e){
-			console.log(e);
 			var data = e['data'];
 			if(data===undefined||data===null||data==='')return;
 			var msg = global.JSON.parse(data);	
