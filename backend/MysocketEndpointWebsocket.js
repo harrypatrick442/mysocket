@@ -1,11 +1,11 @@
 module.exports = (function(){
-	var expressWs;
+	const ExpressWs = require('express-ws');
 	const Core = require('core');
 	const ChannelType = Core.ChannelType;
 	const url = require('url');
 	return function(mysockets, server, path){
 		var app = server.getApp();
-		var expressWs = getExpressWs(app, server.getServer());
+		server.websocketEnable();
 		app.get(path, function(req, res, next){
 		  res.end();
 		});
@@ -27,11 +27,6 @@ module.exports = (function(){
 			}catch(ex){console.error(ex);}
 		});
 	};
-	function getExpressWs(app, server){
-		if(!expressWs)
-			expressWs = require('express-ws')(app, server);
-		return expressWs;
-	}
 	function getIpFromRemoteAddress(remoteAddress){
 		var regExp = new RegExp('::ffff:([0-9\.]+)');
 		var res = regExp.exec(remoteAddress);
