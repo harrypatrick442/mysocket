@@ -23,7 +23,7 @@ var scope = {
 	Timer:Timer, 
 	each:each,
 	JSON:JSON,	
-	WebSocket:WebSocketClient,
+	//WebSocket:WebSocketClient,
 	S:S
 };//todo eventually the frontend component used in the backend will also be precompiled.
 requireRaw(coreFolder+'ChannelType.js', scope);
