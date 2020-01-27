@@ -18,8 +18,7 @@ module.exports = new (function(){
 		this.getChannelType = function(){
 			return ChannelType.WEBSOCKET;
 		};
-		this.sendMessage=function(msg){console.log(msg);
-		console.log('ws sendMe');
+		this.sendMessage=function(msg){
 			try{ws.send(JSON.stringify(msg));}catch(ex){console.error(ex);}
 		};
 		ws.on('message', function(msg) {

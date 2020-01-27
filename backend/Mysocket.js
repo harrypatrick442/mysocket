@@ -82,7 +82,8 @@ module.exports = (function(){
 			timeChannelClosed = getTime();
 			channel = null;
 		}	
-		function sendMessage(msg){
+		function sendMessage(msg){console.log(msg);
+		console.log('sendMessage');
 			channel&&channel.sendMessage(msg);
 		}
 		function nothing(){}
