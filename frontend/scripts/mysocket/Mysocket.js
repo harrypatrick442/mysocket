@@ -8,7 +8,7 @@ var Mysocket = (function(){
 		if(url.indexOf('http')<0&&url.indexOf('localhost')<0)throw new Error('Not a valid url: "'+url+'"');
 		var parameters = params['parameters'];
 		var urlWebsocket = params['urlWebsocket'];
-		if(urlWebsocket.indexOf('http')<0&&url.indexOf('localhost')<0)throw new Error('Not a valid websocket url: "'+url+'"') ;
+		if(urlWebsocket.indexOf('http')<0&&url.indexOf('localhost')<0)throw new Error('Not a valid websocket url: "'+url+'"');
 		var channel;
 		var id;
 		var toSend=[];
