@@ -22,6 +22,7 @@ module.exports = (function(){
 					}
 					return;
 				}
+				
 				//if(ip)	mysocket.setIp(ip);
 			}catch(ex){console.error(ex);}
 		});
