@@ -1,10 +1,10 @@
 node_modules/core
+backend/node_modules/core
+node_modules/enums
+backend/node_modules/enums
 node_modules/helpers
+backend/node_modules/helpers
+node_modules/strings
+backend/node_modules/strings
 backend/node_modules
 node_modules
-node_modules/enums
-node_modules/strings
-backend/node_modules/core
-backend/node_modules/enums
-backend/node_modules/helpers
-backend/node_modules/strings
